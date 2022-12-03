@@ -23,9 +23,10 @@ examples = {
     "Day_2":
     {
         "example":
-        """
-        """,
-        "a": None,
-        "b": None,
+"""A Y
+B X
+C Z""",
+        "a": 15,
+        "b": 12,
     },
 }
