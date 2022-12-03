@@ -29,4 +29,17 @@ C Z""",
         "a": 15,
         "b": 12,
     },
+
+    "Day_3":
+    {
+        "example":
+"""vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw""",
+        "a":157,
+        "b":None
+    }
 }
