@@ -14,11 +14,11 @@ def get_challenge_data(day, column_name, run_type="test", seperator=","):
     else:
         data = challenge_data
 
-    df = pd.read_csv(StringIO(data), names=[column_name], sep=seperator)
+    df = pd.read_csv(StringIO(data), names=column_name, sep=seperator)
 
     return df
 
-def test_before_submit(day,year,part,test_answer,answer):
+def test_before_submit(day,part,test_answer,answer):
     expected = exm.examples[f"Day_{day}"][part]
     if test_answer == expected:
         print("🎉 Submitting!")

@@ -26,8 +26,8 @@ def get_incorrect_item(data):
     return part_one, part_two
 
 def main():
-    test_part_one,test_part_two = get_incorrect_item(get_challenge_data(day=day, column_name="Backpack Contents"))
-    part_one,part_two = get_incorrect_item(get_challenge_data(day=day, column_name="Backpack Contents", run_type="actual"))
+    test_part_one,test_part_two = get_incorrect_item(get_challenge_data(day=day, column_name=["Backpack Contents"]))
+    part_one,part_two = get_incorrect_item(get_challenge_data(day=day, column_name=["Backpack Contents"], run_type="actual"))
 
     if part_two and part_one:
         test_before_submit(day, part="b", test_answer=test_part_two, answer=part_two)
