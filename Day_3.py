@@ -1,37 +1,40 @@
-import pandas as pd
-from aocd import get_data
-import utils.Examples as exm
-from utils.test import test_before_submit
-from io import StringIO
+from utils.test import get_challenge_data, test_before_submit
 import os
 
-AOC_SESSION = 
+AOC_SESSION = os.getenv("AOC_SESSION") 
 day=3
-year=2022
 
 lower = 96
 upper = 38
 
+def get_incorrect_item(data):
+    data["first"] = data["Backpack Contents"].apply(lambda x: x[:int(len(x)/2)])
+    data["second"] = data["Backpack Contents"].apply(lambda x: x[int(len(x)/2):])
+    data["return"] = data.apply(lambda x: set(x["first"]).intersection(x["second"]), axis=1).str.join('')
+    data["priority"] = data["return"].apply(lambda x: ord(x)-upper if x.isupper() else ord(x)-lower)
 
+    part_one = data["priority"].sum()
 
-def get_challenge_data(run_type):
-    example_data = exm.examples[f"Day_{day}"]["example"]
-    challenge_data = get_data(day=day, year=year)
+    i=0
+    part_two=0
+    while i < len(data):
+        df = data["Backpack Contents"][i:i+3].tolist()
+        common = list(set.intersection(*map(set,df)))
+        part_two+=(ord(common[0])-upper if common[0].isupper() else ord(common[0])-lower)
+        i+=3
 
-    if run_type == "test":
-        data = example_data
+    return part_one, part_two
+
+def main():
+    test_part_one,test_part_two = get_incorrect_item(get_challenge_data(day=day, column_name="Backpack Contents"))
+    part_one,part_two = get_incorrect_item(get_challenge_data(day=day, column_name="Backpack Contents", run_type="actual"))
+
+    if part_two and part_one:
+        test_before_submit(day, part="b", test_answer=test_part_two, answer=part_two)
+    elif part_one:
+        test_before_submit(day, part="a", test_answer= test_part_one, answer=part_one)
     else:
-        data = challenge_data
+        raise ValueError("Missing Answers")
 
-    df = pd.read_csv(StringIO(data),names=["Backpack Contents"])
-
-    return df
-
-data = get_challenge_data("test")
-
-data["first"] = data["Backpack Contents"].apply(lambda x: x[:int(len(x)/2)])
-data["second"] = data["Backpack Contents"].apply(lambda x: x[int(len(x)/2):])
-data["return"] = data.apply(lambda x: set(x["first"]).intersection(x["second"]), axis=1).str.join('')
-data["priority"] = data["return"].apply(lambda x: ord(x)-upper if x.isupper() else ord(x)-lower)
-
-print(data["priority"].sum())
+if __name__ == "__main__":
+    main()
