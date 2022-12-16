@@ -78,5 +78,45 @@ move 1 from 1 to 2""",
 """mjqjpqmgbljsphdztnvjfqwrcgsmlb""",
         "a":7,
         "b":None
+    },
+
+    "Day_7":
+    {
+        "example":
+"""$ cd /
+$ ls
+dir a
+14848514 b.txt
+8504156 c.dat
+dir d
+$ cd a
+$ ls
+dir e
+29116 f
+2557 g
+62596 h.lst
+$ cd e
+$ ls
+584 i
+$ cd ..
+$ cd ..
+$ cd d
+$ ls
+4060174 j
+8033020 d.log
+5626152 d.ext
+7214296 k""",
+    "a":95437,
+    "b":None
+    },
+    "Day_8":
+    {
+        "example": """30373
+#25512
+#65332
+#33549
+#35390""",
+    "a":5,
+    "b":None
     }
 }
